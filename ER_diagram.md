@@ -41,9 +41,9 @@ erDiagram
 
 ---
 
-## 📝 Entity Descriptions
+##  Entity Descriptions
 
-### 🔹 USER
+###  USER
 | Attribute   | Type   | Description                          |
 |-------------|--------|--------------------------------------|
 | `userId`    | String | Primary Key – Unique user identifier |
@@ -51,7 +51,7 @@ erDiagram
 | `email`     | String | Email address (unique)               |
 | `createdAt` | Date   | Account creation timestamp           |
 
-### 🔹 RESEARCH_PAPER
+###  RESEARCH_PAPER
 | Attribute      | Type   | Description                                  |
 |----------------|--------|----------------------------------------------|
 | `paperId`      | String | Primary Key – Unique paper identifier        |
@@ -65,7 +65,7 @@ erDiagram
 | `userId`       | String | Foreign Key → USER (uploader)                |
 | `industryId`   | String | Foreign Key → INDUSTRY (category)            |
 
-### 🔹 INDUSTRY
+###  INDUSTRY
 | Attribute      | Type   | Description                            |
 |----------------|--------|----------------------------------------|
 | `industryId`   | String | Primary Key – Unique industry ID       |
@@ -74,7 +74,7 @@ erDiagram
 
 ---
 
-## 🔗 Relationships
+##  Relationships
 
 | Relationship                  | Type         | Description                                      |
 |-------------------------------|--------------|--------------------------------------------------|
