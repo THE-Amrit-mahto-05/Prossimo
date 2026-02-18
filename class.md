@@ -70,7 +70,7 @@ classDiagram
 
 ##  Class Descriptions
 
-### 🔹 User (Model)
+###  User (Model)
 | Member         | Type     | Description                       |
 |----------------|----------|-----------------------------------|
 | `userId`       | String   | Unique identifier for the user    |
