@@ -46,7 +46,6 @@ A centralized platform that:
 | Backend    | Node.js + Express.js   | REST API & business logic          |
 | Database   | MongoDB (Mongoose)     | Data storage & querying            |
 | File Store | Cloudinary             | PDF upload & cloud hosting         |
-| Auth       | JWT (JSON Web Tokens)  | Secure authentication              |
 
 ---
 
@@ -118,15 +117,13 @@ emerging-market-research-platform/
 
 ##  API Endpoints
 
-| Method | Endpoint              | Description                       | Auth Required |
-|--------|-----------------------|-----------------------------------|---------------|
-| POST   | `/api/auth/register`  | Register a new user               | No            |
-| POST   | `/api/auth/login`     | Login & receive JWT token         | No            |
-| POST   | `/api/uploadPaper`    | Upload a research paper (PDF)     | Admin         |
-| GET    | `/api/papers`         | Get all research papers           | Yes           |
-| GET    | `/api/papers/:id`     | Get a specific paper by ID        | Yes           |
-| DELETE | `/api/papers/:id`     | Delete a research paper           | Admin         |
-| GET    | `/api/industryAnalytics` | Get industry analytics data    | Yes           |
+| Method | Endpoint              | Description                       |
+|--------|-----------------------|-----------------------------------|
+| POST   | `/api/uploadPaper`    | Upload a research paper (PDF)     |
+| GET    | `/api/papers`         | Get all research papers           |
+| GET    | `/api/papers/:id`     | Get a specific paper by ID        |
+| DELETE | `/api/papers/:id`     | Delete a research paper           |
+| GET    | `/api/industryAnalytics` | Get industry analytics data    |
 
 ---
 
