@@ -7,32 +7,34 @@ The Use Case diagram below describes the functional requirements of the Emerging
 ---
 
 ```mermaid
-useCaseDiagram
-    actor "User" as U
-    actor "Admin" as A
+flowchart LR
+    subgraph Actors
+        U["User"]
+        A["Admin"]
+    end
 
-    package "Emerging Market Research Platform" {
-        usecase "Browse Research Papers" as UC1
-        usecase "Search & Filter Papers" as UC2
-        usecase "View Industry Analytics" as UC3
-        usecase "Download Research PDF" as UC4
-        usecase "Upload Research Paper" as UC5
-        usecase "Delete Research Paper" as UC6
-        usecase "Manage Industries" as UC7
-    }
+    subgraph "Emerging Market Research Platform"
+        UC1(["Browse Research Papers"])
+        UC2(["Search & Filter Papers"])
+        UC3(["View Industry Analytics"])
+        UC4(["Download Research PDF"])
+        UC5(["Upload Research Paper"])
+        UC6(["Delete Research Paper"])
+        UC7(["Manage Industries"])
+    end
 
-    U --> UC1
-    U --> UC2
-    U --> UC3
-    U --> UC4
+    U --- UC1
+    U --- UC2
+    U --- UC3
+    U --- UC4
 
-    A --> UC1
-    A --> UC2
-    A --> UC3
-    A --> UC4
-    A --> UC5
-    A --> UC6
-    A --> UC7
+    A --- UC1
+    A --- UC2
+    A --- UC3
+    A --- UC4
+    A --- UC5
+    A --- UC6
+    A --- UC7
 ```
 
 ---
