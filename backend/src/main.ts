@@ -1,28 +1,27 @@
+import express from 'express';
+import { setupPaperRoutes } from './api/routes';
 import { PaperApplicationService } from './application/services/PaperApplicationService';
-import { CreatePaperDTO } from './application/dtos/ResearchPaperDTO';
 
-async function bootstrapVerticalSlice() {
-    console.log("Starting MVP Vertical Slice");
+const app = express();
+app.use(express.json());
 
-    const paperRepository = new (class MockPaperRepo {
-        public async save(entity: any) {
-            console.log(`Saved paper: ${entity.getTitle()}`);
-        }
-    })() as any;
+const mockRepo = new (class {
+    public async save(entity: any) {
+        console.log(`[DB] Saved Request internally:`, entity);
+    }
+})() as any;
 
-    const paperService = new PaperApplicationService(paperRepository);
+const paperService = new PaperApplicationService(mockRepo);
 
-    const requestDTO: CreatePaperDTO = {
-        title: "Emerging AI in Market Research",
-        year: 2026,
-        industryId: "123-ind"
-    };
+app.use(setupPaperRoutes(paperService));
 
-    console.log("Processing Request...");
-    const responseDTO = await paperService.createPaper(requestDTO);
+const PORT = parseInt(process.env.PORT || '3000', 10);
+const server = app.listen(PORT, () => {
+    console.log(`Backend MVP Architecture is LIVE!`);
+    console.log(`Listening efficiently on http://localhost:${PORT}`);
+    console.log(`Test via POST request to http://localhost:${PORT}/api/papers`);
+});
 
-    console.log("Response Output:", responseDTO);
-    console.log("Vertical Slice Complete");
-}
-
-bootstrapVerticalSlice();
+server.on('error', (err) => {
+    console.error(`Server failed to start:`, err);
+});

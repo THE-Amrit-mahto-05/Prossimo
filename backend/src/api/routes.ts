@@ -1,16 +1,9 @@
-export interface Request { body: any; params: any; query: any; }
-export interface Response { status(code: number): this; json(data: any): void; }
-export interface Router { post(path: string, handler: (req: Request, res: Response) => Promise<void> | void): void; }
-
-export function MockRouter(): Router {
-    return { post: (path, handler) => { } };
-}
-
+import { Request, Response, Router } from 'express';
 import { PaperApplicationService } from '../application/services/PaperApplicationService';
 import { CreatePaperDTO } from '../application/dtos/ResearchPaperDTO';
 
 export function setupPaperRoutes(paperService: PaperApplicationService): Router {
-    const router = MockRouter();
+    const router = Router();
 
     router.post('/api/papers', async (req: Request, res: Response) => {
         try {
