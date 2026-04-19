@@ -1,6 +1,6 @@
 export class ApiClient {
     private static instance: ApiClient;
-    private baseUrl: string = '/api';
+    private baseUrl: string = (import.meta.env.VITE_API_URL as string) || '/api';
 
     private constructor() { }
 

@@ -1,9 +1,11 @@
 import express from 'express';
+import cors from 'cors';
 import { setupPaperRoutes } from './api/routes';
 import { PaperApplicationService } from './application/services/PaperApplicationService';
 import { OpenAlexAdapter } from './infrastructure/adapters/OpenAlexAdapter';
 
 const app = express();
+app.use(cors());
 app.use(express.json());
 
 

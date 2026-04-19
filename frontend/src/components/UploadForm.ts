@@ -4,17 +4,23 @@ import { FormField } from './molecules/FormField';
 import { Button } from './atoms/Button';
 import { usePapers } from '../hooks/usePapers';
 import { h } from '../utils/h';
+import { SuccessModal } from './molecules/SuccessModal';
 
 export function UploadForm({ onUploadSuccess }: { onUploadSuccess?: () => void }) {
     const { uploadPaper, isLoading, error, lastUploaded } = usePapers();
     const [title, setTitle] = useState('');
     const [year, setYear] = useState<number>(2026);
     const [industryId, setIndustryId] = useState('');
+    const [showSuccess, setShowSuccess] = useState(false);
 
     const handleSubmit = (e: any) => {
         e.preventDefault();
         uploadPaper({ title, year, industryId }).then(() => {
+            setShowSuccess(true);
             if (onUploadSuccess) onUploadSuccess();
+            // Reset form
+            setTitle('');
+            setIndustryId('');
         }).catch(() => { });
     };
 
@@ -37,17 +43,13 @@ export function UploadForm({ onUploadSuccess }: { onUploadSuccess?: () => void }
             } 
         }, error) : null,
         
-        lastUploaded ? h('div', { 
-            style: { 
-                background: 'rgba(0, 255, 0, 0.1)', 
-                color: '#00e676', 
-                padding: '12px', 
-                borderRadius: 'var(--radius-sm)',
-                fontSize: '14px',
-                border: '1px solid rgba(0, 255, 0, 0.2)',
-                marginBottom: '15px'
-            } 
-        }, `✨ Success! Paper ID: ${lastUploaded.paperId}`) : null,
+        h(SuccessModal, {
+            isOpen: showSuccess,
+            onClose: () => setShowSuccess(false),
+            title: lastUploaded?.title || '',
+            year: lastUploaded?.year || 0,
+            industry: lastUploaded?.industryName || ''
+        }),
 
         h(FormField, { label: 'Paper Title', value: title, onChange: (e: any) => setTitle(e.target.value), placeholder: 'Quantum Cryptography...' }),
         h(FormField, { label: 'Publication Year', value: year, type: 'number', onChange: (e: any) => setYear(Number(e.target.value)) }),

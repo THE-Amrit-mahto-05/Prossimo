@@ -5,6 +5,7 @@ interface ButtonProps {
     onClick?: () => void;
     type?: "button" | "submit" | "reset";
     isLoading?: boolean;
+    style?: React.CSSProperties;
 }
 
 export function Button(props: ButtonProps) {
@@ -35,7 +36,8 @@ export function Button(props: ButtonProps) {
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                gap: '8px'
+                gap: '8px',
+                ...props.style
             }
         },
         props.isLoading ? [

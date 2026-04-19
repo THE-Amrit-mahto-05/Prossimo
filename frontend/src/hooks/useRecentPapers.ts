@@ -23,7 +23,7 @@ export function useRecentPapers() {
             }
         };
         doFetch();
-    }, [paperService]);
+    }, []);
 
     useEffect(() => {
         fetchPapers();
