@@ -1,17 +1,27 @@
 import express from 'express';
 import { setupPaperRoutes } from './api/routes';
 import { PaperApplicationService } from './application/services/PaperApplicationService';
+import { OpenAlexAdapter } from './infrastructure/adapters/OpenAlexAdapter';
 
 const app = express();
 app.use(express.json());
 
+
 const mockRepo = new (class {
+    private papers: any[] = [];
     public async save(entity: any) {
-        console.log(`[DB] Saved Request internally:`, entity);
+        console.log(`[DB] PERSISTING Paper:`, entity.getTitle());
+        this.papers.push(entity);
     }
+    public async findAll() { return this.papers; }
+    public async findById(id: string) { return this.papers.find(p => p.getId() === id) || null; }
+    public async update() {}
+    public async delete() {}
 })() as any;
 
-const paperService = new PaperApplicationService(mockRepo);
+const externalSource = new OpenAlexAdapter();
+
+const paperService = new PaperApplicationService(mockRepo, externalSource);
 
 app.use(setupPaperRoutes(paperService));
 

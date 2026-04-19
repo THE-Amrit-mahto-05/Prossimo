@@ -2,6 +2,7 @@ export interface CreatePaperDTO {
     title: string;
     year: number;
     industryId: string;
+    industryName?: string;
 }
 
 export interface PaperResponseDTO {
