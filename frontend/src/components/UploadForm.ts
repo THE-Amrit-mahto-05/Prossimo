@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import * as React from 'react';
+const { useState } = React;
 import { FormField } from './molecules/FormField';
 import { Button } from './atoms/Button';
 import { usePapers } from '../hooks/usePapers';
 import { h } from '../utils/h';
 
-export function UploadForm() {
+export function UploadForm({ onUploadSuccess }: { onUploadSuccess?: () => void }) {
     const { uploadPaper, isLoading, error, lastUploaded } = usePapers();
     const [title, setTitle] = useState('');
     const [year, setYear] = useState<number>(2026);
@@ -12,7 +13,9 @@ export function UploadForm() {
 
     const handleSubmit = (e: any) => {
         e.preventDefault();
-        uploadPaper({ title, year, industryId }).catch(() => { });
+        uploadPaper({ title, year, industryId }).then(() => {
+            if (onUploadSuccess) onUploadSuccess();
+        }).catch(() => { });
     };
 
     return h('form', { 
