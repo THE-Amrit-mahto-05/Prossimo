@@ -7,4 +7,8 @@ declare module 'react' {
 
     const React: any;
     export default React;
+
+    export function useEffect(arg0: () => void, arg1: any[]) {
+        throw new Error('Function not implemented.');
+    }
 }
