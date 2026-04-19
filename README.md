@@ -1,4 +1,8 @@
+The Emerging Market Research Platform is a full-stack web application designed to help researchers, analysts, and investors identify emerging industries by analyzing trends in academic research papers. By aggregating research data — including publication counts, citation metrics, and funding scores — the platform calculates an Emerging Market Score for each industry, enabling data-driven investment and research decisions.
+
+
 demo link: https://drive.google.com/file/d/1hYQEYMlUp-SVUOm7X2yXM7RcKAxoXqMm/view?usp=sharing
+
 published link: https://prossimo-xi.vercel.app/
 
 look
