@@ -19,5 +19,6 @@ export class ResearchPaper {
 
     public getId(): string { return this.id; }
     public getTitle(): string { return this.title; }
+    public getYear(): number { return this.year; }
     public getIndustry(): Industry { return this.industry; }
 }
