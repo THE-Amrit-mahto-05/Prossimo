@@ -19,13 +19,7 @@ export function InputField(props: InputFieldProps) {
             onChange: props.onChange,
             placeholder: props.placeholder,
             required: props.required,
-            style: { 
-                padding: '10px', 
-                border: '1px solid #ccc', 
-                borderRadius: '4px',
-                width: '100%',
-                boxSizing: 'border-box'
-            }
+            className: 'premium-input'
         }
     );
 }
