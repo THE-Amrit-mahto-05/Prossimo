@@ -7,7 +7,12 @@ const mockRepo = new (class {
     public async save(entity: any) { }
 })() as any;
 
-const service = new PaperApplicationService(mockRepo);
+const mockExternal = {
+    search: async () => [],
+    getDetails: async () => ({})
+} as any;
+
+const service = new PaperApplicationService(mockRepo, mockExternal);
 
 async function runIntegrationTest() {
     try {
