@@ -26,4 +26,19 @@ export class ApiClient {
 
         return response.json();
     }
+
+    public async get<T>(endpoint: string): Promise<T> {
+        const response = await fetch(`${this.baseUrl}${endpoint}`, {
+            method: 'GET',
+            headers: {
+                'Accept': 'application/json',
+            }
+        });
+
+        if (!response.ok) {
+            throw new Error(`API Request Failed: ${response.statusText}`);
+        }
+
+        return response.json();
+    }
 }
